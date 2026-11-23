@@ -1,0 +1,157 @@
+{
+  "name": "kuza-vscode",
+  "displayName": "Kuza",
+  "description": "Kuza language support: syntax, completions, hovers and run",
+  "version": "0.5.7",
+  "publisher": "kuza",
+  "license": "MIT",
+  "icon": "icons/kuza-dark.png",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kuza-lang/kuza.git"
+  },
+  "homepage": "https://github.com/kuza-lang/kuza#readme",
+  "galleryBanner": {
+    "color": "#101417",
+    "theme": "dark"
+  },
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Programming Languages"
+  ],
+  "keywords": [
+    "kuza",
+    "language"
+  ],
+  "main": "./dist/extension.js",
+  "activationEvents": [
+    "onLanguage:kuza",
+    "onCommand:kuza.run",
+    "onCommand:kuza.dev",
+    "onCommand:kuza.build",
+    "onCommand:kuza.new",
+    "onCommand:kuza.ai"
+  ],
+  "contributes": {
+    "languages": [
+      {
+        "id": "kuza",
+        "aliases": [
+          "Kuza",
+          "kuza"
+        ],
+        "extensions": [
+          ".kuza"
+        ],
+        "icon": {
+          "light": "./icons/kuza-light.png",
+          "dark": "./icons/kuza-dark.png"
+        },
+        "configuration": "./language-configuration.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "kuza",
+        "scopeName": "source.kuza",
+        "path": "./syntaxes/kuza.tmLanguage.json"
+      }
+    ],
+    "snippets": [
+      {
+        "language": "kuza",
+        "path": "./snippets/kuza.json"
+      }
+    ],
+    "commands": [
+      {
+        "command": "kuza.run",
+        "title": "Kuza: Run file",
+        "icon": "$(play)"
+      },
+      {
+        "command": "kuza.dev",
+        "title": "Kuza: Start dev server",
+        "icon": "$(rocket)"
+      },
+      {
+        "command": "kuza.build",
+        "title": "Kuza: Build site",
+        "icon": "$(package)"
+      },
+      {
+        "command": "kuza.new",
+        "title": "Kuza: New project"
+      },
+      {
+        "command": "kuza.ai",
+        "title": "Kuza: Ask AI about this project"
+      }
+    ],
+    "menus": {
+      "editor/title": [
+        {
+          "command": "kuza.run",
+          "when": "resourceExtname == .kuza",
+          "group": "navigation@1"
+        },
+        {
+          "command": "kuza.dev",
+          "when": "resourceExtname == .kuza",
+          "group": "navigation@2"
+        },
+        {
+          "command": "kuza.build",
+          "when": "resourceExtname == .kuza",
+          "group": "navigation@3"
+        }
+      ],
+      "commandPalette": [
+        {
+          "command": "kuza.run",
+          "when": "resourceExtname == .kuza"
+        },
+        {
+          "command": "kuza.dev"
+        },
+        {
+          "command": "kuza.build"
+        },
+        {
+          "command": "kuza.new"
+        },
+        {
+          "command": "kuza.ai"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "Kuza",
+      "properties": {
+        "kuza.executable": {
+          "type": "string",
+          "default": "kuza",
+          "description": "Команда запуска Kuza в терминале (например, kuza или npx kuza)."
+        },
+        "kuza.port": {
+          "type": "number",
+          "default": 5173,
+          "description": "Порт для команды Kuza: Start dev server."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "build": "node build.mjs && tsc -p tsconfig.json --noEmit",
+    "watch": "node build.mjs --watch",
+    "package": "node build.mjs && vsce package --no-dependencies --allow-missing-repository --skip-license",
+    "publish": "node build.mjs && vsce publish --no-dependencies --skip-license"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.85.0",
+    "@vscode/vsce": "^3.2.0",
+    "esbuild": "^0.24.0"
+  }
+}

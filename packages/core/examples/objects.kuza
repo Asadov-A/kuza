@@ -1,0 +1,21 @@
+## objects.kuza — объекты и JSON
+
+:user = { name: "Аня", age: 21, city: "Ташкент" };
+
+log >> user.name;
+log >> "Ключи: " + join >> <keys >> user, ", ">;
+log >> "Значения: " + join >> <values >> user, ", ">;
+
+:json = jsonStringify >> user;
+log >> json;
+
+:restored = jsonParse >> json;
+?hasKey >> <restored, "city"> >> [
+  log >> "Город: " + restored.city;
+]
+
+:updated = merge >> <restored, { age: 22 }>;
+log >> updated.name + " теперь " + updated.age;
+
+log >> "Тип: " + typeof >> updated;
+log >> "Это объект? " + isObj >> updated;

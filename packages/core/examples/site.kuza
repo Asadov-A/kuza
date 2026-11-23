@@ -1,0 +1,58 @@
+## site.kuza — сайт на Kuza 0.5.0 в компонентном стиле
+## Новый проект: kuza new my-site && cd my-site && npm install && npm run dev
+## Отдельный файл: kuza build site.kuza --web → site.html
+
+:count = 0;
+:greeting = "";
+
+func Card<t> >> [
+  card<"rounded-xl border border-white/10 bg-white/5 p-5"> >> [
+    heading >> <t, "text-lg font-semibold text-white">;
+    para >> "Компонент — обычная функция Kuza.";
+  ];
+];
+
+view App<> >> [
+  page >> "Мой сайт на Kuza";
+
+  body<"mx-auto max-w-3xl p-8"> >> [
+    heading >> <"Привет! Это сайт на Kuza", "text-3xl font-bold">;
+    para >> "Страница собирается из вложенных блоков, как в React, только без сборщика.";
+
+    row<"mt-6 flex flex-wrap gap-4"> >> [
+      Card<"Первый">;
+      Card<"Второй">;
+      Card<"Третий">;
+    ];
+
+    column<"mt-6 flex flex-col gap-3"> >> [
+      heading >> <"Счётчик: {count}", "text-2xl">;
+      button >> <"Прибавить", increase, "rounded bg-orange-500 px-4 py-2">;
+      button >> <"Сбросить", reset, "rounded border px-4 py-2">;
+    ];
+
+    field >> <"Как тебя зовут?", "name">;
+    button >> <"Поздоровать", greet, "mt-3 rounded bg-white/10 px-4 py-2">;
+
+    ?greeting != "" >> [
+      card<"mt-4 p-4"> >> [ para >> greeting; ];
+    ];
+  ];
+
+  render;
+];
+
+func increase<> >> [
+  count = count + 1;
+];
+
+func reset<> >> [
+  count = 0;
+];
+
+func greet<> >> [
+  :name = fieldValue >> "name";
+  ?len >> name > 0 >> [
+    greeting = "Привет, " + name + "!";
+  ];
+];

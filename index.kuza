@@ -1,0 +1,10 @@
+## Демо компилятора Kuza (не сайт)
+## Запуск: npm run cli -- run index.kuza
+
+:name = prompt >> "Enter your name: ";
+
+log >> "------------------------------";
+log >> "Hello, {name}!";
+
+:numbers = [1, 2, 3, 4, 5];
+log >> "Sum: {sum >> numbers}";

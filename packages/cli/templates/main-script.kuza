@@ -1,0 +1,14 @@
+## main.kuza — first console program on Kuza
+## Run: npx kuza-lang run main.kuza
+
+:name = "world";
+log >> "Hello, {name}!";
+
+:numbers = [1, 2, 3, 4, 5];
+log >> "Sum: {sum >> numbers}";
+
+?len >> numbers > 3 >> [
+  log >> "More than three numbers";
+] || [
+  log >> "Too few numbers";
+]

@@ -1,0 +1,47 @@
+## modules.kuza — Шаг A: подстановки, модули, лямбды, диапазоны, цепочки
+
+use math;
+use text;
+
+## 1. Подстановка в строки
+:name = "Асад";
+:age = 17;
+log >> "Привет, {name}! Тебе {age} лет.";
+
+## 2. Встроенные модули
+log >> "Корень из 144: " + math.sqrt<144>;
+log >> "В верхнем регистре: " + text.upper<"kuza">;
+
+## 3. Лямбды и цепочки
+:numbers = [5, 12, 3, 20, 8];
+:big = numbers |> filter<(x) -> x > 6> |> sort;
+log >> "Больше шести: " + join >> <big, ", ">;
+
+:doubled = numbers |> map<(x) -> x * 2>;
+log >> "Удвоенные: " + join >> <doubled, ", ">;
+
+log >> "Сумма: " + (numbers |> sum);
+
+## 4. Диапазоны
+:total = 0;
+for<:i = 1..5> >> [
+  :total = total + i;
+]
+log >> "Сумма 1..5 = " + total;
+
+foreach<n : 1..4> >> [
+  log >> "Квадрат {n} = {n * n}";
+]
+
+## 5. Срез массива (включительно)
+log >> "С 2-го по 4-й: " + join >> <numbers[1..3], ", ">;
+
+## 6. Значения по умолчанию и деструктуризация
+func greet<who = "друг"> >> [
+  return "Привет, {who}!";
+]
+log >> greet<>;
+log >> greet<"Куза">;
+
+:[first, second] = numbers;
+log >> "Первый: {first}, второй: {second}";

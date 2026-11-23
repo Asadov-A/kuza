@@ -1,0 +1,33 @@
+## main.kuza — smoke-сайт на Kuza 0.5.0
+## npm run dev → http://localhost:5173
+## npm run build → dist/index.html
+
+:count = 0;
+
+view App<> >> [
+  page >> "Kuza Counter";
+
+  body<"mx-auto max-w-2xl px-6 py-16"> >> [
+    card<"rounded-2xl border border-white/10 bg-white/5 p-8"> >> [
+      image >> <"/favicon.svg", "Kuza icon">;
+      heading >> <"Hello, Kuza!", "mt-4 text-4xl font-bold text-white">;
+      para >> <"Your first Kuza website is running.", "mt-3 text-slate-300">;
+      para >> <"Count: {count}", "mt-8 text-2xl font-semibold text-orange-400">;
+      row<"mt-5 flex flex-wrap gap-3"> >> [
+        button >> <"Add one", increase, "rounded-lg bg-orange-500 px-4 py-2 font-semibold text-slate-950">;
+        button >> <"Reset", reset, "rounded-lg border border-white/20 px-4 py-2 text-slate-200">;
+      ];
+      link >> <"Read the docs", "https://github.com/kuza-lang/kuza/blob/main/docs/commands.md", "mt-6 inline-block text-orange-400 underline">;
+    ];
+  ];
+
+  render;
+];
+
+func increase<> >> [
+  count = count + 1;
+];
+
+func reset<> >> [
+  count = 0;
+];

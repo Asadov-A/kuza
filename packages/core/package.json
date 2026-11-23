@@ -1,0 +1,37 @@
+{
+  "name": "kuza-core",
+  "version": "0.5.7",
+  "description": "Компилятор и рантайм языка Kuza: лексер, парсер, генератор JavaScript",
+  "license": "MIT",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./commands.json": "./commands.json"
+  },
+  "files": [
+    "dist",
+    "commands.json",
+    "examples",
+    "README.md"
+  ],
+  "keywords": [
+    "kuza",
+    "language",
+    "compiler",
+    "transpiler"
+  ],
+  "scripts": {
+    "generate": "node scripts/generate.mjs",
+    "build": "npm run generate && tsc -p tsconfig.json",
+    "test": "npm run build && vitest run",
+    "test:watch": "vitest"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

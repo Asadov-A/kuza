@@ -1,0 +1,39 @@
+{
+  "name": "kuza-lang",
+  "version": "0.5.7",
+  "description": "Kuza CLI — run, build, check and ship sites with an AI assistant",
+  "license": "MIT",
+  "type": "module",
+  "bin": {
+    "kuza": "dist/index.js"
+  },
+  "main": "./dist/index.js",
+  "files": [
+    "dist",
+    "templates",
+    "scripts/postinstall.mjs",
+    "README.md"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "keywords": [
+    "kuza",
+    "language",
+    "cli",
+    "repl",
+    "compiler"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "postinstall": "node scripts/postinstall.mjs",
+    "start": "node dist/index.js",
+    "test": "npm run build && vitest run"
+  },
+  "dependencies": {
+    "kuza-core": "^0.5.7",
+    "boxen": "^8.0.1",
+    "chalk": "^5.3.0",
+    "gradient-string": "^3.0.0"
+  }
+}

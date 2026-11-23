@@ -1,0 +1,30 @@
+## Таблицы — маленькие данные прямо внутри языка.
+## Создание: table<колонки>, добавление: .add<значения>.
+
+:users = table<id, name, age, city>;
+users.add<1, "Аня", 17, "Москва">;
+users.add<2, "Боря", 22, "Казань">;
+users.add<3, "Вера", 30, "Москва">;
+users.add<4, "Гоша", 15, "Сочи">;
+
+log >> "Всего строк: {len >> users}";
+table >> users;
+
+## select: колонки from таблица where условие order by колонка desc
+:adults = select name, age from users where age >= 18 order by age desc;
+log >> "Совершеннолетние:";
+table >> adults;
+
+:msk = select * from users where city == "Москва" order by name;
+log >> "Из Москвы: {len >> msk}";
+table >> msk;
+
+## Изменение и удаление строк.
+update users set city = "Санкт-Петербург" where id = 2;
+delete from users where age < 18;
+
+log >> "Осталось: {len >> users}";
+table >> users;
+
+## Цепочки работают как с обычным массивом.
+log >> select name from users |> map<(u) -> u.name> |> join<", ">;

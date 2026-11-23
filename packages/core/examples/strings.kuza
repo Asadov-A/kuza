@@ -1,0 +1,23 @@
+## strings.kuza — работа со строками
+
+:text = "  Kuza — маленький язык  ";
+:clean = trim >> text;
+
+log >> upper >> clean;
+log >> lower >> clean;
+log >> capitalize >> "kuza";
+
+log >> "Слов: " + len >> <words >> clean>;
+
+:parts = split >> <clean, " ">;
+log >> join >> <reverse >> parts, " / ">;
+
+log >> replace >> <"a-b-c", "-", "+">;
+log >> repeat >> <"=", 20>;
+log >> padLeft >> <"7", 3, "0">;
+log >> padRight >> <"7", 3, ".">;
+
+?contains >> <clean, "язык"> >> [
+  log >> "Слово \"язык\" есть в тексте";
+]
+log >> "Позиция \"Kuza\": " + indexOf >> <clean, "Kuza">;

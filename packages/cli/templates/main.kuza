@@ -1,0 +1,97 @@
+## main.kuza — the entire site lives in this file.
+## npm run dev    → http://localhost:5173
+## npm run build  → dist/
+## kuza docs      → the full reference (public/docs.html)
+
+:count = 0;
+
+view App<> >> [
+  page >> "Kuza — a small language that compiles to JavaScript";
+
+  nav<"site-header"> >> [
+    box<"shell header-inner"> >> [
+      row<"brand"> >> [
+        image >> <"/favicon.svg", "Kuza">
+        para >> <"kuza", "brand-name">
+      ];
+      row<"header-links"> >> [
+        link >> <"Documentation", "/docs.html", "header-link">
+        link >> <"GitHub", "https://github.com/kuza-lang/kuza", "header-link">
+      ];
+    ];
+  ];
+
+  section<"shell hero"> >> [
+    heading >> <"One file. No configuration.", "hero-title">
+    para >> <"Kuza is a small language that compiles to JavaScript. Markup, styles and logic live in a single .kuza file, and the result is a static page you can host anywhere.", "hero-lead">
+    row<"hero-actions"> >> [
+      link >> <"Read the documentation", "/docs.html", "button button-primary">
+      link >> <"Getting started", "/docs.html#start", "button button-secondary">
+    ];
+    para >> <"npm install kuza-lang", "snippet">
+  ];
+
+  section<"shell two-column"> >> [
+    box<"panel"> >> [
+      para >> <"LIVE EXAMPLE", "label">
+      para >> <"{count}", "counter-value">
+      para >> <"Assign to a variable and the view redraws itself — there is no render call in the handler.", "panel-text">
+      row<"hero-actions"> >> [
+        button >> <"Increment", bump, "button button-secondary">
+        button >> <"Reset", reset, "button button-quiet">
+      ];
+    ];
+
+    box<"code-panel"> >> [
+      box<"code-head"> >> [
+        para >> <"main.kuza", "code-name">
+        para >> <"source", "code-tag">
+      ];
+      para >> <":count = 0;", "code-line">
+      para >> <"", "code-line">
+      para >> <"view App<> >> [", "code-line">
+      para >> <"  heading >> \"Count: {count}\";", "code-line">
+      para >> <"  button >> <\"Increment\", bump>;", "code-line">
+      para >> <"  render;", "code-line">
+      para >> <"];", "code-line">
+    ];
+  ];
+
+  section<"shell"> >> [
+    heading >> <"Where to go next", "section-title">
+    row<"next-grid"> >> [
+      card<"next-card"> >> [
+        para >> <"Documentation", "next-title">
+        para >> <"All 132 commands, the CLI and the backend, in one local page.", "next-text">
+        link >> <"Open the reference", "/docs.html", "next-link">
+      ];
+      card<"next-card"> >> [
+        para >> <"AI assistant", "next-title">
+        para >> <"kuza agent reads the project and edits files for you.", "next-text">
+        link >> <"Set it up", "/docs.html#ai", "next-link">
+      ];
+      card<"next-card"> >> [
+        para >> <"Examples", "next-title">
+        para >> <"Programs and sites to copy from, from counters to HTTP servers.", "next-text">
+        link >> <"Browse on GitHub", "https://github.com/kuza-lang/kuza/tree/main/packages/core/examples", "next-link">
+      ];
+    ];
+  ];
+
+  nav<"site-footer"> >> [
+    box<"shell footer-inner"> >> [
+      para >> <"Kuza — MIT licensed", "footer-text">
+      link >> <"Documentation", "/docs.html", "footer-link">
+    ];
+  ];
+
+  render;
+];
+
+func bump<> >> [
+  count = count + 1;
+];
+
+func reset<> >> [
+  count = 0;
+];

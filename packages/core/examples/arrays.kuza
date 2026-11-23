@@ -1,0 +1,21 @@
+## arrays.kuza — массивы и математика
+
+:items = [5, 3, 8, 1, 9, 3];
+
+log >> "Всего элементов: " + len >> items;
+log >> "Сумма: " + sum >> items;
+log >> "Среднее: " + avg >> items;
+
+:ordered = sort >> items;
+log >> "По возрастанию: " + join >> <ordered, ", ">;
+
+:uniq = unique >> items;
+log >> "Без повторов: " + join >> <uniq, ", ">;
+
+push >> <items, 42>;
+log >> "Добавили 42: " + join >> <items, ", ">;
+
+log >> "Случайное 1..6: " + randRange >> <1, 6>;
+log >> "Максимум: " + max >> <10, 42, 17>;
+log >> "По модулю: " + abs >> -7;
+log >> "2^10 = " + pow >> <2, 10>;

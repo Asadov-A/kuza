@@ -1,0 +1,35 @@
+{
+  "name": "kuza-monorepo",
+  "version": "0.5.7",
+  "private": true,
+  "type": "module",
+  "description": "Kuza — маленький язык программирования, который компилируется в JavaScript",
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "build": "npm run build -w kuza-core && npm run build -w kuza-lang && npm run build -w kuza-vscode",
+    "test": "npm run test -w kuza-core && npm run test -w kuza-lang",
+    "generate": "npm run generate -w kuza-core",
+    "cli": "node packages/cli/dist/index.js",
+    "package:vscode": "npm run package -w kuza-vscode",
+    "publish:vscode": "npm run publish -w kuza-vscode",
+    "clean": "node -e \"const fs=require('fs');for(const p of ['packages/core/dist','packages/cli/dist','packages/vscode/dist'])fs.rmSync(p,{recursive:true,force:true})\"",
+    "publish:core": "npm publish -w kuza-core --access public",
+    "publish:cli": "npm publish -w kuza-lang",
+    "publish:npm": "npm run build && npm run publish:core && npm run publish:cli"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.2",
+    "@types/vscode": "^1.85.0",
+    "@vscode/vsce": "^3.2.0",
+    "esbuild": "^0.24.0",
+    "typescript": "^5.7.2",
+    "vitest": "^2.1.8"
+  },
+  "dependencies": {
+    "is-number": "^7.0.0",
+    "kuza-core": "^0.5.7",
+    "kuza-lang": "^0.5.7"
+  }
+}

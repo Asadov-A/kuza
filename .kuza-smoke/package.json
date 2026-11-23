@@ -1,0 +1,14 @@
+{
+  "name": "-kuza-smoke",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "kuza start",
+    "build": "kuza build",
+    "check": "kuza check",
+    "start": "kuza start"
+  },
+  "dependencies": {
+    "kuza-lang": "^0.5.0"
+  }
+}

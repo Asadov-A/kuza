@@ -1,0 +1,118 @@
+{
+  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+  "name": "Kuza",
+  "scopeName": "source.kuza",
+  "fileTypes": [
+    "kuza"
+  ],
+  "patterns": [
+    {
+      "include": "#comments"
+    },
+    {
+      "include": "#strings"
+    },
+    {
+      "include": "#numbers"
+    },
+    {
+      "include": "#keywords"
+    },
+    {
+      "include": "#commands"
+    },
+    {
+      "include": "#variables"
+    },
+    {
+      "include": "#operators"
+    }
+  ],
+  "repository": {
+    "comments": {
+      "patterns": [
+        {
+          "name": "comment.line.double-hash.kuza",
+          "match": "##.*$"
+        },
+        {
+          "name": "comment.line.double-slash.kuza",
+          "match": "//.*$"
+        }
+      ]
+    },
+    "strings": {
+      "patterns": [
+        {
+          "name": "string.quoted.backtick.kuza",
+          "begin": "`",
+          "end": "`"
+        },
+        {
+          "name": "string.quoted.double.kuza",
+          "match": "\"(?:[^\"\\\\]|\\\\.)*\""
+        },
+        {
+          "name": "string.quoted.single.kuza",
+          "match": "'(?:[^'\\\\]|\\\\.)*'"
+        }
+      ]
+    },
+    "numbers": {
+      "patterns": [
+        {
+          "name": "constant.numeric.kuza",
+          "match": "\\b\\d+(?:\\.\\d+)?\\b"
+        }
+      ]
+    },
+    "keywords": {
+      "patterns": [
+        {
+          "name": "keyword.control.kuza",
+          "match": "\\b(?:func|while|for|foreach|try|catch|return|break|continue|throw|and|or|not|true|false|null|select|update|delete|view|select|from|where|order|by|limit|desc|asc|update|set|delete)\\b"
+        },
+        {
+          "name": "constant.language.kuza",
+          "match": "\\b(?:true|false|null)\\b"
+        }
+      ]
+    },
+    "commands": {
+      "patterns": [
+        {
+          "name": "support.function.builtin.kuza",
+          "match": "\\b(?:jsonStringify|selectColumns|tableFromRows|requestHeader|distinctRows|randBetween|rowsToTable|storeRemove|requestBody|pickColumns|mergeTables|headerValue|replaceAll|startsWith|beginsWith|capitalize|firstMatch|formatDate|appendFile|fileExists|removeFile|deleteFile|fieldValue|storeClear|queryParam|serverPath|difference|filterRows|updateRows|sortRowsBy|subheading|randRange|uppercase|lowercase|findIndex|transform|jsonParse|timestamp|writeFile|domAppend|tableFrom|tableSave|saveTable|tableLoad|loadTable|partition|intersect|whereRows|groupRows|averageBy|patchRows|rowsCount|emitEvent|hostValue|codeBlock|logError|isNumber|isString|isObject|randPick|contains|includes|endsWith|padStart|padRight|reversed|removeAt|fromJson|readFile|httpJson|httpPost|domStyle|domValue|newError|deepCopy|fromRows|storeGet|loadData|storeSet|saveData|bodyData|uniqueBy|sortRows|columnOf|rowCount|firstRow|takeRows|dropRows|hostCall|tagBadge|checkbox|dropdown|warning|toFloat|isArray|average|toUpper|toLower|replace|indexOf|padLeft|unshift|forEach|reverse|flatten|confirm|listDir|httpGet|getJson|domText|domHtml|cliArgs|heading|section|respond|totalOf|flatMap|orderBy|groupBy|totalBy|countBy|indexBy|keyedBy|columns|lastRow|onEvent|article|subhead|divider|choices|notify|typeof|toBool|random|length|substr|repeat|charAt|padEnd|filter|sorted|unique|values|hasKey|hasOwn|assign|toJson|prompt|append|exists|domGet|domAdd|assert|expect|getEnv|button|render|column|header|method|listen|chunks|reduce|footer|center|print|logln|alert|clear|table|toInt|float|toStr|isNum|isStr|isArr|isObj|round|floor|clamp|upper|lower|split|slice|words|shift|where|count|merge|today|month|sleep|input|yesno|write|domOn|value|error|clone|field|image|route|param|query|first|chunk|sumOf|union|pluck|sumBy|avgBy|tally|aside|small|muted|badge|quote|check|warn|type|bool|ceil|sqrt|rand|pick|mean|sign|trim|size|join|char|push|find|each|sort|uniq|flat|keys|date|year|wait|read|post|text|html|uuid|copy|args|page|para|list|link|body|card|last|tail|take|drop|skip|fold|cors|emit|main|grid|hero|form|cite|code|log|err|cls|int|str|abs|max|min|pow|sum|avg|len|has|add|pop|map|now|day|ask|get|css|env|box|row|col|nav|zip|ls|on|id|h2|hr)\\b"
+        }
+      ]
+    },
+    "variables": {
+      "patterns": [
+        {
+          "match": ":(\\s*)([\\p{L}_$][\\p{L}\\p{N}_$]*)",
+          "captures": {
+            "2": {
+              "name": "variable.other.kuza"
+            }
+          }
+        }
+      ]
+    },
+    "operators": {
+      "patterns": [
+        {
+          "name": "keyword.operator.kuza",
+          "match": ">>|\\|>|->|\\.\\.|\\|\\||\\?|==|!=|<=|>=|\\*\\*|\\+=|-=|\\*=|/=|\\+\\+|--|&&|="
+        },
+        {
+          "name": "punctuation.section.block.begin.kuza",
+          "match": "\\["
+        },
+        {
+          "name": "punctuation.section.block.end.kuza",
+          "match": "\\]"
+        }
+      ]
+    }
+  }
+}

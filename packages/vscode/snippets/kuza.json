@@ -1,0 +1,119 @@
+{
+  "var": {
+    "prefix": "var",
+    "body": [
+      ":${1:name} = ${2:value};$0"
+    ],
+    "description": "Объявить переменную. Внутри функции/цикла повторное \":name = ...\" для уже существующей переменной становится присваиванием."
+  },
+  "func": {
+    "prefix": "func",
+    "body": [
+      "func ${1:name}<${2:params}> >> [",
+      "\t$0",
+      "]"
+    ],
+    "description": "Объявить функцию с параметрами."
+  },
+  "if": {
+    "prefix": "if",
+    "body": [
+      "?${1:condition} >> [",
+      "\t$0",
+      "] || [",
+      "\t",
+      "]"
+    ],
+    "description": "Условие: \"?\" — это if, \"||\" — это else if / else."
+  },
+  "while": {
+    "prefix": "while",
+    "body": [
+      "while<${1:condition}> >> [",
+      "\t$0",
+      "]"
+    ],
+    "description": "Цикл, который повторяется, пока условие истинно."
+  },
+  "for": {
+    "prefix": "for",
+    "body": [
+      "for<${1:i} = 0; ${1:i} < ${2:10}; ${1:i}++> >> [",
+      "\t$0",
+      "]"
+    ],
+    "description": "Цикл со счётчиком."
+  },
+  "foreach": {
+    "prefix": "foreach",
+    "body": [
+      "foreach<${1:item} : ${2:array}> >> [",
+      "\t$0",
+      "]"
+    ],
+    "description": "Перебрать все элементы массива."
+  },
+  "try": {
+    "prefix": "try",
+    "body": [
+      "try >> [",
+      "\t$0",
+      "] catch<${1:e}> >> [",
+      "\t",
+      "]"
+    ],
+    "description": "Поймать ошибку и обработать её."
+  },
+  "table": {
+    "prefix": "table",
+    "body": [
+      ":${1:users} = table<${2:id, name}>;",
+      "${1:users}.add<${3:1, \"Аня\"}>;$0"
+    ],
+    "description": "Создать таблицу с колонками — основной способ хранить данные. Строки добавляются через insert into или users.add<...>, сохраняются через tableSave и читаются через tableLoad (JSON)."
+  },
+  "select": {
+    "prefix": "select",
+    "body": [
+      "select ${1:*} from ${2:users} where ${3:age >= 18};$0"
+    ],
+    "description": "Запрос к таблице: выбрать колонки, отфильтровать, отсортировать и ограничить. Колонки читаются как переменные."
+  },
+  "update": {
+    "prefix": "update",
+    "body": [
+      "update ${1:users} set ${2:age} = ${3:18} where ${4:id = 1};$0"
+    ],
+    "description": "Изменить строки таблицы, подходящие под условие. В значении можно использовать колонки: age = age + 1."
+  },
+  "delete": {
+    "prefix": "delete",
+    "body": [
+      "delete from ${1:users} where ${2:age < 18};$0"
+    ],
+    "description": "Удалить строки таблицы, подходящие под условие."
+  },
+  "view": {
+    "prefix": "view",
+    "body": [
+      "view ${1:App}<> >> [",
+      "\t$0",
+      "]"
+    ],
+    "description": "реактивный экран Kuza: вызывается один раз и при каждом изменении своих переменных"
+  },
+  "insert": {
+    "prefix": "insert",
+    "body": [
+      "insert into ${1:users} values <${2:1, \"Аня\"}>;$0"
+    ],
+    "description": "Добавить строку в таблицу. Значения идут по порядку колонок table<...>; можно передать и объект: insert into users <{ id: 1, name: \"Аня\" }>."
+  },
+  "use": {
+    "prefix": "use",
+    "body": [
+      "use \"${1:lodash}\";$0"
+    ],
+    "description": "Подключить модуль: встроенный (math, time, random, text, json), свой файл (путь в кавычках) или пакет из npm (имя в кавычках). Пакеты загружаются через import, поэтому в браузере нужен import map или сборщик."
+  }
+}

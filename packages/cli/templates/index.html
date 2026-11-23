@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#0b0c0f" />
+    <meta name="generator" content="Kuza" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="description" content="A site built with Kuza. Edit main.kuza and the page updates itself." />
+    <title>Kuza site</title>
+
+    <!-- Tailwind Play CDN is fine for prototyping. Replace it with a build step in production. -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      // Kuza base styles use a high-specificity #kuza-app selector.
+      // `important` lets the Tailwind classes written in main.kuza win.
+      tailwind.config = { important: true };
+    </script>
+
+    <!-- Starter design only. Remove this line and public/styles.css to start from a blank page. -->
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body class="antialiased">
+    <!-- Kuza mounts the application here. Do not remove this marker. -->
+    {main.kuza}
+  </body>
+</html>
